@@ -1,0 +1,51 @@
+
+/* .hhh{
+	width: 100%;
+	height: 7.5rem;
+	position: fixed;
+	z-index: 99;
+	bottom: 0px;
+	left: 0px;
+	background-color: #f0f;
+	font-size: 18px;
+	padding: 0px 10px;
+}
+
+.hhh>.mune>img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+ */
+
+#fk{ 
+	position:fixed;bottom:0px;left:0px;
+	/* margin-top:0.76em;*/
+	  width:100%; 
+	  max-width: 900px;
+	  height:60px; 
+	/* background:url(../images/projection.png) repeat-x; */
+	 padding-top:0.76em;
+	  font-size:0.912em;
+	background-color: #fff;
+	}
+#fk #fkk{ float:left; margin-left:7.2%; width:16%; 
+	height:70.7%; text-align:center;}
+#fk #fkk p{ font-size:0.836rem; color:#656565;margin-bottom:10px;}
+#fk #fkk img{ height:50.5%;}
+#fk #fkk{color:red;}
+/* .hhh{ 
+	position:fixed;bottom:0px;left:0px;
+	 margin-top:0.6em;
+	  width:22.5em; 
+	  height:2.99em; 
+	background:url(../images/projection.png) repeat-x;
+	 padding-top:0.6em;
+	  font-size:0.72em;
+	background-color: #fff;
+	}
+.mune{ float:left; margin-left:1.62em; width:3.6em; 
+	height:2.1em; text-align:center;}
+.mune p{ font-size:0.66rem; color:#656565;margin-bottom:10px;}
+.mune img{ width:1.5em; height:1.5em;}
+.hhh .red{color:red;}
+ */

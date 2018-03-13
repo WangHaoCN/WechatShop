@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqj.dao.SensorMapper" >
+  <resultMap id="BaseResultMap" type="com.hqj.model.Sensor" >
+    <id column="sensorid" property="sensorid" jdbcType="INTEGER" />
+    <result column="sensorname" property="sensorname" jdbcType="VARCHAR" />
+    <result column="data" property="data" jdbcType="DOUBLE" />
+    <result column="createdate" property="createdate" jdbcType="DATE" />
+    <result column="facilityid" property="facilityid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sensorid, sensorname, data, createdate, facilityid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from test_sensor
+    where sensorid = #{sensorid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from test_sensor
+    where sensorid = #{sensorid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqj.model.Sensor" >
+    insert into test_sensor (sensorid, sensorname, data, 
+      createdate, facilityid)
+    values (#{sensorid,jdbcType=INTEGER}, #{sensorname,jdbcType=VARCHAR}, #{data,jdbcType=DOUBLE}, 
+      #{createdate,jdbcType=DATE}, #{facilityid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqj.model.Sensor" >
+    insert into test_sensor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sensorid != null" >
+        sensorid,
+      </if>
+      <if test="sensorname != null" >
+        sensorname,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+      <if test="facilityid != null" >
+        facilityid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sensorid != null" >
+        #{sensorid,jdbcType=INTEGER},
+      </if>
+      <if test="sensorname != null" >
+        #{sensorname,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=DOUBLE},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=DATE},
+      </if>
+      <if test="facilityid != null" >
+        #{facilityid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqj.model.Sensor" >
+    update test_sensor
+    <set >
+      <if test="sensorname != null" >
+        sensorname = #{sensorname,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null" >
+        data = #{data,jdbcType=DOUBLE},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=DATE},
+      </if>
+      <if test="facilityid != null" >
+        facilityid = #{facilityid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sensorid = #{sensorid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqj.model.Sensor" >
+    update test_sensor
+    set sensorname = #{sensorname,jdbcType=VARCHAR},
+      data = #{data,jdbcType=DOUBLE},
+      createdate = #{createdate,jdbcType=DATE},
+      facilityid = #{facilityid,jdbcType=INTEGER}
+    where sensorid = #{sensorid,jdbcType=INTEGER}
+  </update>
+</mapper>

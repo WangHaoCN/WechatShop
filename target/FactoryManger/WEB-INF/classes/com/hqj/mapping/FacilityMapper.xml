@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqj.dao.FacilityMapper" >
+  <resultMap id="BaseResultMap" type="com.hqj.model.Facility" >
+    <id column="facilityid" property="facilityid" jdbcType="INTEGER" />
+    <result column="facilityname" property="facilityname" jdbcType="VARCHAR" />
+    <result column="linkway" property="linkway" jdbcType="CHAR" />
+    <result column="time" property="time" jdbcType="INTEGER" />
+    <result column="open" property="open" jdbcType="CHAR" />
+    <result column="createdate" property="createdate" jdbcType="DATE" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    facilityid, facilityname, linkway, time, open, createdate, userid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from test_facility
+    where facilityid = #{facilityid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from test_facility
+    where facilityid = #{facilityid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqj.model.Facility" >
+    insert into test_facility (facilityid, facilityname, linkway, 
+      time, open, createdate, userid
+      )
+    values (#{facilityid,jdbcType=INTEGER}, #{facilityname,jdbcType=VARCHAR}, #{linkway,jdbcType=CHAR}, 
+      #{time,jdbcType=INTEGER}, #{open,jdbcType=CHAR}, #{createdate,jdbcType=DATE}, #{userid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqj.model.Facility" >
+    insert into test_facility
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="facilityid != null" >
+        facilityid,
+      </if>
+      <if test="facilityname != null" >
+        facilityname,
+      </if>
+      <if test="linkway != null" >
+        linkway,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="open != null" >
+        open,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="facilityid != null" >
+        #{facilityid,jdbcType=INTEGER},
+      </if>
+      <if test="facilityname != null" >
+        #{facilityname,jdbcType=VARCHAR},
+      </if>
+      <if test="linkway != null" >
+        #{linkway,jdbcType=CHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=INTEGER},
+      </if>
+      <if test="open != null" >
+        #{open,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=DATE},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqj.model.Facility" >
+    update test_facility
+    <set >
+      <if test="facilityname != null" >
+        facilityname = #{facilityname,jdbcType=VARCHAR},
+      </if>
+      <if test="linkway != null" >
+        linkway = #{linkway,jdbcType=CHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=INTEGER},
+      </if>
+      <if test="open != null" >
+        open = #{open,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=DATE},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where facilityid = #{facilityid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqj.model.Facility" >
+    update test_facility
+    set facilityname = #{facilityname,jdbcType=VARCHAR},
+      linkway = #{linkway,jdbcType=CHAR},
+      time = #{time,jdbcType=INTEGER},
+      open = #{open,jdbcType=CHAR},
+      createdate = #{createdate,jdbcType=DATE},
+      userid = #{userid,jdbcType=INTEGER}
+    where facilityid = #{facilityid,jdbcType=INTEGER}
+  </update>
+</mapper>

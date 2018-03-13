@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.wechatshop.dao.UserMapper">
+	<resultMap id="BaseResultMap" type="com.ssm.wechatshop.entities.User">
+		<id column="openId" jdbcType="VARCHAR" property="openId" />
+		<result column="nickname" jdbcType="VARCHAR" property="nickname" />
+		<result column="sex" jdbcType="INTEGER" property="sex" />
+		<result column="country" jdbcType="VARCHAR" property="country" />
+		<result column="province" jdbcType="VARCHAR" property="province" />
+		<result column="city" jdbcType="VARCHAR" property="city" />
+		<result column="headImgUrl" jdbcType="VARCHAR" property="headImgUrl" />
+		<!--<result column="privilegeList" jdbcType="VARCHAR" property="privilegeList" 
+			/> -->
+		<result column="subscribeTime" jdbcType="VARCHAR" property="subscribeTime" />
+		<result column="subscribe" jdbcType="INTEGER" property="subscribe" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		openId, nickname, sex, country, province, city, headImgUrl,
+		subscribeTime,subscribe
+	</sql>
+
+
+	<!--查询语句 按照id查找 -->
+	<select id="findById" parameterType="String"
+		resultType="com.ssm.wechatshop.entities.User">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where openId = #{openId,jdbcType=VARCHAR}
+	</select>
+
+	<!--查询语句 查看全部 -->
+	<select id="findAll" parameterType="int" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user
+	</select>
+
+
+	<!--查询语句 分页查询 -->
+	<select id="findByPage" parameterType="int" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+	</select>
+
+
+	<!--按照自定义条件查找，查询语句 拼接sql条件语句 -->
+	<select id="findByType" parameterType="com.ssm.wechatshop.entities.User"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user where 1=1
+		<if test="nickname!=null and !&quot;&quot;.equals(nickname.trim())">
+			and nickname like '%' #{nickname} '%'
+		</if>
+
+		<if test="country!=null and !&quot;&quot;.equals(country.trim())">
+			and country=#{country}
+		</if>
+
+		<if test="province!=null and !&quot;&quot;.equals(province.trim())">
+			and province=#{province}
+		</if>
+
+		<if test="city!=null and !&quot;&quot;.equals(city.trim())">
+			and province=#{province}
+		</if>
+
+	</select>
+
+
+
+
+	<!--插入 -->
+	<insert id="insert">
+		insert into user(
+		<include refid="Base_Column_List" />
+		)
+		values ( #{openId}, #{nickname}, #{sex}, #{country}, #{province},
+		#{city},
+		#{headImgUrl}, #{subscribeTime},#{subscribe})
+	</insert>
+
+
+	<!--修改 -->
+	<update id="update" parameterType="com.ssm.wechatshop.entities.Manager">
+		update user
+		set
+		nickname=#{nickname},
+		sex=#{sex},
+		country=#{country},
+		province=#{province},
+		city=#{city},
+		headImgUrl=#{headImgUrl},
+		subscribeTime=#{subscribeTime},
+		subscribe=#{subscribe}
+
+		where
+		openId=#{openId}
+	</update>
+
+	<delete id="delete" parameterType="String">
+		delete from user where
+		openId=#{openId}
+	</delete>
+
+
+	<!-- 多个删除操作 -->
+	<delete id="deleteBatch" parameterType="java.util.List">
+		delete from user where openId in(
+		<foreach collection="list" item="item" separator=",">
+			#{item}
+		</foreach>
+		)
+	</delete>
+
+</mapper>
