@@ -37,7 +37,6 @@ public class UserService {
 	@Autowired
 	private IndentMapper indentMapper;
 	
-	//获取用户的默认收货地址
 	public Address getMorenAddressByUserid(String userId){
 		Address address = new Address();
 		address = addressMapper.getMorenAddressByUserId(userId);
@@ -45,80 +44,66 @@ public class UserService {
 		return address;
 	}
 	
-	//通过用户id取消所有默认收货地址
 	public void quxiaomoren(String userid){
 		addressMapper.quxiaomoren(userid);
 	}
-	//通过AddressId设置默认地址
+
 	public void shezhimoren(String addressid){
 		addressMapper.shezhimoren(addressid);
 	}
 	
-	//通过id获取收货地址
 	public Address getAddressById(String id){
-		Address address = new Address();
-		address = addressMapper.findAddressById(id);
-		System.out.println(address);
-		return address;
+		return addressMapper.findAddressById(id);
 	}
 	
 	
-	//所有其他商品
 	public List<Ware> getWareqita(String str1,String str2){
 		List<Ware> wares = new ArrayList<Ware>();
 		wares = wareMapper.findQita(str1,str2);
 		return wares;
 	}
-	
-	//查询收货地址
+
 	public List<Address> getAddress(String userId){
-		List<Address> address = new ArrayList<>();
+		List<Address> address = new ArrayList<Address>();
 		if(addressMapper.findById(userId)!=null)
 			address = (List<Address>) addressMapper.findById(userId);
 		return address;
 	}
 	
-	// 通过id查询用户
 	public User findUserById(String id) {
 		User user = new User();
 		user = userMapper.findById(id);
 		return user;
 	}
 
-	// 查询用户的订单信息
 	public List<Indent> getIndentByUser(String userid) {
-		List<Indent> indents = new ArrayList<>();
+		List<Indent> indents = new ArrayList<Indent>();
 		if (indentMapper.getIndentByUserId(userid) != null)
 			indents = indentMapper.getIndentByUserId(userid);
 
 		return indents;
 	}
 
-	// 查询学校信息
 	public List<School> getAllSchool() {
 		List<School> schools = new ArrayList<School>();
 		schools = schoolMapper.getAllSchool();
 		return schools;
 	}
 
-	// 根据学校名查询楼号
 	public List<School> getBuildBySchool(String school) {
 		List<School> schools = new ArrayList<School>();
 		schools = schoolMapper.findBuildBySchool(school);
 		return schools;
 	}
 
-	// 通过id查询商品
 	public Ware findWareById(int id) {
 		Ware ware = new Ware();
 		ware = wareMapper.findById(id);
 		return ware;
 	}
 
-	// 获取商品的前20条记录
 	public List<Ware> getWare20() {
-		List<Ware> wares = new ArrayList<>();
-		// 获取总的记录条数
+		List<Ware> wares = new ArrayList<Ware>();
 		int count = 0;
 
 		wares = wareMapper.findByPage(0, 20);
@@ -130,47 +115,39 @@ public class UserService {
 
 	}
 
-	// 获取商品的前所有记录
 	public List<Ware> getWareAll() {
-		List<Ware> wares = new ArrayList<>();
-		// 获取总的记录条数
+		List<Ware> wares = new ArrayList<Ware>();
 		wares = wareMapper.findAll();
-		System.out.println("商品总数  ：  " + wares.size());
+		System.out.println("锟斤拷品锟斤拷锟斤拷  锟斤拷  " + wares.size());
 		return wares;
 	}
 
-	// 获取所有零食
 	public List<Ware> getWareLingshi(String lingshi) {
-		List<Ware> waresLingshi = new ArrayList<>();
-		// 获取总的记录条数
+		List<Ware> waresLingshi = new ArrayList<Ware>();
 		waresLingshi = wareMapper.findByKind(lingshi);
 		return waresLingshi;
 	}
 
-	// 获取所有水果
 	public List<Ware> getWareShuiguo(String shuiguo) {
-		List<Ware> waresLingshi = new ArrayList<>();
-		// 获取总的记录条数
+		List<Ware> waresLingshi = new ArrayList<Ware>();
 		waresLingshi = wareMapper.findByKind(shuiguo);
 		return waresLingshi;
 	}
 
-	// 查询商品
 	public List<Ware> searchWare(String val) {
-		List<Ware> waresLingshi = new ArrayList<>();
-		// 获取总的记录条数
+		List<Ware> waresLingshi = new ArrayList<Ware>();
 		waresLingshi = wareMapper.findByName(val);
 		return waresLingshi;
 	}
 	
 	public List<Ware> searchQita(){
-		List<Ware> waresLingshi = new ArrayList<>();
-		// 获取总的记录条数
+		List<Ware> waresLingshi = new ArrayList<Ware>();
+		// 锟斤拷取锟杰的硷拷录锟斤拷锟斤拷
 		waresLingshi = wareMapper.findByName("");
 		return waresLingshi;
 	}
  
-	// 收货地址插入
+	// 锟秸伙拷锟斤拷址锟斤拷锟斤拷
 	public void addressInsert(Address address) {
 		addressMapper.insert(address);
 	}

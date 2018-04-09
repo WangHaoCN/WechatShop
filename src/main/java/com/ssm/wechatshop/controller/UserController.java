@@ -19,20 +19,17 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	//ÊÕ»õµØÖ·¹ÜÀíÒ³Ãæ
 	public ModelAndView addressPage(Map<String, Object> map){
-		//¸ù¾İÓÃ»§µÄid²éÑ¯ÊÕ»õµØÖ·
 		
 		return new ModelAndView("/user/",map);
 	}
-	//ÊÕ»õµØÖ·Ìá½»
 	
 	@RequestMapping("/addressUpload.action")
 	public ModelAndView addressUpload(Address address,HttpSession session){
 		System.out.println(address);
 		userService.addressInsert(address);
 		session.setAttribute("address", address);
-		System.out.println("²åÈë³É¹¦");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½É¹ï¿½");
 		return new ModelAndView("redirect:/user/index.action");
 	}
 	

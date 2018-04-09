@@ -193,7 +193,7 @@ public class UserPagerController {
 		 */
 		leixing = "零食";
 
-		List<Ware> allwares = new ArrayList<>();
+		List<Ware> allwares = new ArrayList<Ware>();
 		if (userService.getWareLingshi(leixing) != null)
 			allwares = userService.getWareLingshi(leixing);
 		map.put("wares", allwares);

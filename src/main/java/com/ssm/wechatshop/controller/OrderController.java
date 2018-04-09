@@ -28,15 +28,12 @@ public class OrderController {
 	@Autowired
 	private UserService userService;
 
-	/*
-	 * 总价计算
-	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/zongjia.action")
 	public void zongjia(@Param("wareId") Integer wareId, @Param("kind") Integer kind, HttpSession session,
 			HttpServletResponse response, @Param("count") Integer count) throws IOException {
 		PrintWriter out = response.getWriter();
-		List<Ware> WareGwc = new ArrayList<>();
+		List<Ware> WareGwc = new ArrayList<Ware>();
 		if (session.getAttribute("WareGwc") != null) {
 			WareGwc = (List<Ware>) session.getAttribute("WareGwc");
 		}
@@ -46,10 +43,8 @@ public class OrderController {
 				ware = WareGwc.get(i);
 				WareGwc.remove(i);
 				if (kind == 1 && count != -1) {
-					// 点击为加号按钮
 					ware.setCount(count);
 				} else if (kind == 2 && count != -1) {
-					// 点击为加号按钮
 					if (ware.getCount() > 0)
 						ware.setCount(count);
 				}
@@ -69,7 +64,6 @@ public class OrderController {
 		out.print(price);
 	}
 
-	// 前端刷新收货地址
 	@RequestMapping("/morendizhi.action")
 	public void morenshouhuo(HttpSession session, HttpServletResponse response, HttpServletRequest request)
 			throws IOException {
@@ -88,7 +82,6 @@ public class OrderController {
 
 	}
 
-	// 收货地址选中
 	@RequestMapping("/xuanzhong.action")
 	public void xuanzhong(@Param("id") String id, HttpSession session, HttpServletResponse response,
 			HttpServletRequest request) throws IOException {
@@ -98,21 +91,17 @@ public class OrderController {
 		response.setContentType("text/html;charset=utf-8");
 		Address address = new Address();
 
-		// 取消所有默认收货地址
-		// 设置默认地址，通过addressId确定
 		if (session.getAttribute("user") != null) {
 			userService.quxiaomoren(((User) (session.getAttribute("user"))).getOpenId());
 			userService.shezhimoren(id);
 		}
 
-		// 通过id获取收货地址
 		address = userService.getAddressById(id);
 		session.setAttribute("address", address);
 		if (address != null)
 			out.print(address.getId());
 	}
 
-	// 学校楼号的二级联动，学校显示
 	@RequestMapping("/school.action")
 	public void schoolBuilding(HttpServletResponse response, HttpServletRequest request) throws IOException {
 		response.setCharacterEncoding("UTF-8");
@@ -120,15 +109,13 @@ public class OrderController {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html;charset=utf-8");
 
-		out.write("<option value=''>-- 请选择学校信息（必填） --</option>");
+		out.write("<option value=''>-- 锟斤拷选锟斤拷学校锟斤拷息锟斤拷锟斤拷锟筋） --</option>");
 
-		// 显示学校信息
 		List<School> schools = userService.getAllSchool();
 		for (int i = 0; i < schools.size(); i++)
 			out.write("<option value='" + schools.get(i).getSchool() + "'>" + schools.get(i).getSchool() + "</option>");
 	}
 
-	// 学校楼号的二级联动，楼层显示
 	@RequestMapping("/schoolBuilding.action")
 	public void getSchoolBuilding(@Param("build") String build, HttpServletResponse response,
 			HttpServletRequest request) throws IOException {
@@ -136,7 +123,6 @@ public class OrderController {
 		request.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html;charset=utf-8");
-		// 显示学校信息
 		List<School> schools = userService.getBuildBySchool(build);
 		for (int i = 0; i < schools.size(); i++)
 			out.write("<option value='" + schools.get(i).getBuilding() + "'>" + schools.get(i).getBuilding()
