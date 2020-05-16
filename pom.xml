@@ -42,7 +42,7 @@
         <galileo-project.version>1.0-SNAPSHOT</galileo-project.version>
         <hermes.version>1.2.6</hermes.version>
 
-        <jackson.version>2.9.8</jackson.version>
+        <jackson.version>2.11.0</jackson.version>
 
         <flink.version>1.7.0</flink.version>
         <kafka.version>0.8.2.2</kafka.version>
