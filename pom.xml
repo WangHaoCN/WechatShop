@@ -32,7 +32,7 @@
         <buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>
         <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
         <mybatis-plus.version>3.2.0</mybatis-plus.version>
-        <mysql-connector.version>5.1.48</mysql-connector.version>
+        <mysql-connector.version>8.0.16</mysql-connector.version>
         <spring-boot.version>2.2.1.RELEASE</spring-boot.version>
         <spring.version>5.1.1.RELEASE</spring.version>
         <lombok.version>1.18.4</lombok.version>
@@ -605,7 +605,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.30</version>
+            <version>8.0.16</version>
         </dependency>
         <!-- json数据 -->
         <dependency>
